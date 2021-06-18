@@ -11,7 +11,10 @@ github_username: ee2532hjs
 
 # Build settings
 theme: jekyll-theme-architect
+<<<<<<< HEAD
 usemathjax: true
+=======
+>>>>>>> aa1124103177e1258310afb888bf5e0824f11e1f
 plugins:
   - jekyll-feed
 
