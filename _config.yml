@@ -11,6 +11,7 @@ github_username: ee2532hjs
 
 theme: minima
 # Build settings
+usemathjax: true
 plugins:
   - jekyll-feed
 
