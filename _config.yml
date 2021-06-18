@@ -10,7 +10,8 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: ee2532hjs
 
 # Build settings
-theme: minima
+theme: jekyll-theme-architect
+usemathjax: true
 plugins:
   - jekyll-feed
 
