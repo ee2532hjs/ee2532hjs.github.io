@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Basic concentration inequalities"
+title:  "Restricted isometry of iid normal matrix"
 date: 2021-06-19
 ---
 
@@ -12,10 +12,7 @@ Such advantage can be useful in medical imaging, for example, since it is not on
 
 But, even if we are sure that $$U$$ exists, its construction is another thing.
 To be precise, we say $$x$$ is $$s$$ sparse, if only at most $$s$$ components of $$x$$ is nonzero.
-It is shown that in the noiseless case, a ‘1-minimization program recovers
-the N
-p-dimensional signal, with Nm measurements, under overwhelming
-probability [3]
+It is shown that in the noiseless case, various convex minimization program may recover the signal $$x$$ efficiently, under overwhelming probability.
 
 We say that $$Q$$ satisfies $$\delta$$ restricted isometry property (hereafter $$\delta$$ RIP) of sparsity s if for all $$s$$ sparse $$x$$,
 
@@ -31,10 +28,12 @@ Without loss of generality, let
 
 $$Q_{i,j} \sim \mathrm{normal} (0, 1^2)$$
 
-By Chernoff bound, for $$s$$ sparse $$x$$, and suppose in addition that $$\| x \|_2 = 1$$,
+Absorb suitable constants so that $$\| x \|_2 = 1$$.
+By Chernoff bound, for every $$s$$ sparse $$x$$, for every $$\alpha >0$$,
 
-$$\mathbb{P} \left[ \| Q x \|_2^2 \geq (1 + \delta) \right]
-\leq \exp \left( -\alpha (1 + \delta) \| x \|_2^2 \right)
+$$q
+\equiv \mathbb{P} \left[ \| Q x \|_2^2 \geq (1 + \delta) \right]
+\leq e ^{-\alpha (1 + \delta)}
 \mathbb{E} \exp \left( \alpha \| Q x \|_2^2 \right)$$
 
 Now, if $$x_{i_t}$$ is nonzero for $$i_1, \dotsc, i_s$$,
@@ -55,16 +54,37 @@ $$\mathbb{E} \exp \left[ \alpha x_{i_1}^2 \| Q_{1:N, i_1} \|_2^2 \right]
 
 Similarly, for the rest,
 
-$$\mathbb{P} \left[ \| Q x \|_2^2 \geq (1 + \delta) \right]
-= e ^{-\alpha (1 + \delta)}
+$$q = e ^{-\alpha (1 + \delta)}
 \left[ (1 - 2 \alpha x_{i_1} ^2) \cdot \dotsb \cdot (1 - 2 \alpha x_{i_s} ^2) \right] ^{-N/2}
 $$
 
-$$\leq e ^{-\alpha (1 + \delta)} (1 - 2\alpha) ^{-N/2}
-$$
+By the nature of alternating series,
 
-If we simply take $$\alpha = 1 / 2 (1 + \delta)$$,
+$$q
+\leq e^{-\alpha (1 + \delta)} (1 - 2\alpha) ^ {-N/2}$$
 
-$$\leq e ^{-1/2} (\frac {\delta} {1 + \delta}) ^{-N/2}
-\leq e ^{-1/2} \delta ^{-N/2}
-$$
+We simply plug in
+
+$$\alpha = \frac {N} {1 + \delta}$$
+
+Asymptotically, this gives, in view of the property of natural base $$e$$,
+
+$$q
+\leq e^{-N} \left( \frac {2N} {1 + \delta} \right) ^ {-N/2}
+\left( 1 - \frac {1 + \delta} {2N} \right) ^ {-(2N/(1+\delta) ((1+\delta)/4)}
+\approx 0 \cdot 0 \cdot e ^{-(1+\delta)/4} \to 0$$
+
+Similarly, by Chernoff bound, for every $$s$$ sparse $$x$$, for every $$\alpha <0$$,
+
+$$\mathbb{P} \left[ \| Q x \|_2^2 \leq (1 - \delta) \right]
+\leq e ^{-\alpha (1 - \delta)}
+\mathbb{E} \exp \left( \alpha \| Q x \|_2^2 \right)$$
+
+A similar derivation shows that the tail probability mass vanishes, and the details are left to the reader.
+
+## Reference
+
+Achlioptas, Dimitris. "Database-friendly random projections: Johnson-Lindenstrauss with binary coins." *Journal of computer and System Sciences*, **66**, no 4 (2003).
+
+Baraniuk, Richard, Mark Davenport, Ronald DeVore, and Michael Wakin. "A simple proof of the restricted isometry property for random matrices." *Constructive Approximation*, **28**, no 3 (2008).
+
