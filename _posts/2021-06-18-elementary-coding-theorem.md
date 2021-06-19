@@ -17,9 +17,9 @@ Suppose
 
 $$c = T m + z$$
 
-Here, $$m$$ is the message, which is iid, taking values $$0, 1$$ with probability $$p$$.
-$$T$$ the linear block code, $$c$$ the code, $$z$$ the iid Gaussian noise with standard deviation $$\sigma$$.
-For concreteness,
+Here, $$m$$ is the message, $$T$$ the linear block code, $$c$$ the code.
+We also have $$z$$ the iid Bernoulli noise with probability $$p$$.
+For concreteness, with $$\mathbb{B} = \{0, 1\}$$,
 
 $$c, z \in \mathbb{B} ^{n \cdot 1},
 \quad T \in \mathbb{B} ^{n \cdot k}
@@ -41,19 +41,24 @@ $$M_{1, 1:k} = M_{2, k+1: 2k} = \dotsb = M_{n, nk -k +1: nk} = m$$
 
 $$M_{i,j} = 0 \quad \mathrm{otherwise}$$
 
-Now, suppose we can show that all of the components of $$M t$$ has weight at least $$n p$$, that is, at least $$n p$$ entries are nonzero.
-Then by the weak law of large numbers, the probability that the number of transmission errors exceeds
-$$p n$$ is vanishing.
+We want to find a suitable $$T$$, so that, decoded under the minimal Hamming distance, the bit error rate $$< n \delta / n = \delta$$.
+
+By the weak law of large numbers, the probability that the number of transmission errors exceeds
+$$p (n + \epsilon)$$ is vanishing.
+Indeed, the probability that is close to $$\sqrt {\frac {n \epsilon} {p q}} \to 0$$.
+Suppose we can show that all of the components of $$M t$$ has weight at least $$n p$$, that is, at least $$n p$$ entries are nonzero.
+Now, without loss of generality, think about the situation that $$m = 0$$ is incorrectly decoded as some $$m'$$ with Hamming weight at least $$p (n + \epsilon)$$.
+We see that the bit error rate must vanish.
 
 We consider instead what such unwanted values of $$t$$ are.
 Well, those elements with weight less than $$pn$$ cannot exceed this many,
 
 $$N_c =\sum _{i=1} ^{pn} \binom {n} {i}$$
 
-By Stirling's formula,
+By Stirling's formula, as $$n \to \infty$$,
 
 $$\binom {n} {i}
-=\sqrt{\frac {n} {2 \pi i (n-i)}} \frac {n^n} {i^i (n-i) ^ {n-i}}$$
+\approx \sqrt{\frac {n} {2 \pi i (n-i)}} \frac {n^n} {i^i (n-i) ^ {n-i}}$$
 
 It is an exercise left to the reader, to show that, agreeing the expression of entropy,
 
